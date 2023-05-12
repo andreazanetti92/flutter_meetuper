@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PostScreen extends StatefulWidget {
+  final PostApiProvider _api = PostApiProvider();
   @override
   State<StatefulWidget> createState() {
     return _PostScreenState();
@@ -15,7 +16,6 @@ class PostScreen extends StatefulWidget {
 class _PostScreenState extends State<PostScreen> {
   final String pageTitle = "Posts Screen";
   List<PostModel> _posts = [];
-  PostApiProvider _api = PostApiProvider();
 
   @override
   void initState() {
@@ -24,7 +24,8 @@ class _PostScreenState extends State<PostScreen> {
   }
 
   _getPosts() async {
-    List<PostModel> posts = await _api.fetchPosts();
+    List<PostModel> posts =
+        await widget._api.fetchPosts(); // widget is the stateful widget
     setState(() => _posts = posts);
   }
 
