@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_meetuper/src/models/post_model.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_meetuper/src/models/post_model.dart';
 class PostApiProvider {
   final String _url = "https://jsonplaceholder.typicode.com/posts";
 
-  Future<List<PostModel>> fetchPosts() async {
+  FutureOr<List<PostModel>> fetchPosts() async {
     final response = await http.get(Uri.parse(_url));
 
     // One Way
